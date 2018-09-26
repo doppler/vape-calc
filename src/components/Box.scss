@@ -1,0 +1,21 @@
+.Box {
+  border: 1px solid #333;
+  border-radius: 5px;
+  width: 300px;
+  margin-bottom: 5px;
+}
+.Box-header {
+  background-color: #EEE;
+  border-bottom: 1px solid #333;
+  h1 {
+    margin: 0 0;
+    color: #333;
+    font-size: 1.1em;
+  }
+}
+.Box-header, .Box-content {
+  padding: 5px 10px;
+}
+.Control-right-label {
+  margin-left: 6px;
+}
