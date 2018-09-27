@@ -5,11 +5,13 @@ import Box from './Box'
 
 const Base = ({ baseNicStrength, onChangeBaseNicStrength }) =>
   <Box title="Base Nicotine Liquid">
-    <input
-      type="number"
-      onChange={onChangeBaseNicStrength}
-      value={baseNicStrength} />
-    <span className="Control-right-label">% Nicotine</span>
+    <div className="Input-addon">
+      <input className="Input-addon-field"
+        type="number"
+        onChange={onChangeBaseNicStrength}
+        value={baseNicStrength} />
+      <span className="Input-addon-item">% Nicotine</span>
+    </div>
   </Box>
 
 Base.propTypes = {

@@ -5,22 +5,22 @@ import Box from './Box'
 
 const Batch = ({ batchSize, recipeName, onChangeBatchSize, onChangeRecipeName }) =>
   <Box title="Name and Size">
-    <div>
-      <input
+    <div className="Input-addon">
+      <input className="Input-addon-field"
         type="text"
         onChange={onChangeRecipeName}
         value={recipeName}
       />
-      <span className="Control-right-label">Recipe Name</span>
+      <span className="Input-addon-item">Name</span>
     </div>
-    <div>
-      <input
+    <div className="Input-addon">
+      <input className="Input-addon-field"
         type="number"
         step={10}
         onChange={onChangeBatchSize}
         value={batchSize}
       />
-      <span className="Control-right-label">ml</span>
+      <span className="Input-addon-item">ml</span>
     </div>
   </Box>
 

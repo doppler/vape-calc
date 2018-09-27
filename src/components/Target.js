@@ -5,19 +5,23 @@ import Box from './Box'
 
 const Target = ({ targetNicStrength, onChangeTargetNicStrength, targetVgRatio, onChangeTargetVgRatio }) =>
   <Box title="Target Percentages">
-    <input
-      type="number"
-      step="0.5"
-      onChange={onChangeTargetNicStrength}
-      value={targetNicStrength} />
-    <span className="Control-right-label">% Nicotine</span>
+    <div className="Input-addon">
+      <input className="Input-addon-field"
+        type="number"
+        step="0.5"
+        onChange={onChangeTargetNicStrength}
+        value={targetNicStrength} />
+      <span className="Input-addon-item">% Nicotine</span>
+    </div>
+    <div className="Input-addon">
+      <input className="Input-addon-field"
+        type="number"
+        step="5"
+        onChange={onChangeTargetVgRatio}
+        value={targetVgRatio} />
+      <span className="Input-addon-item">% VG</span>
+    </div>
 
-    <input
-      type="number"
-      step="5"
-      onChange={onChangeTargetVgRatio}
-      value={targetVgRatio} />
-    <span className="Control-right-label">% VG</span>
   </Box>
 
 Target.propTypes = {
