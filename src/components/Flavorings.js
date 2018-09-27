@@ -5,6 +5,7 @@ import Flavor from './Flavor'
 
 const Flavorings = ({ ...props, flavors, onAddFlavoring }) => //, onAddFlavoring, onChangeFlavorName, onChangeFlavorPercentage, onRemoveFlavoring }) =>
   <Box title="Flavorings">
+    <button onClick={onAddFlavoring}>+ Add</button>
     <table>
       <tbody>
         {flavors.map(flavor =>
@@ -12,7 +13,6 @@ const Flavorings = ({ ...props, flavors, onAddFlavoring }) => //, onAddFlavoring
         )}
       </tbody>
     </table>
-    <button onClick={onAddFlavoring}>+ Add</button>
   </Box>
 
 Flavorings.propTypes = {
