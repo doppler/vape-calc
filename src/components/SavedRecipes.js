@@ -1,40 +1,33 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Box from './Box'
 
-export default class SavedRecipes extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      savedRecipes: []
-    }
-  }
-
-  componentDidMount() {
-    const recipes = []
-    for(let i=0; i < localStorage.length; i++) {
-      let recipe = JSON.parse(localStorage.getItem(localStorage.key(i)))
-      recipes.push(recipe)
-    }
-    this.setState({
-      savedRecipes: recipes
-    })
-  }
-
-  render() {
-    return (
-      <Box title="Saved Recipes">
-        <ul>
-          {this.state.savedRecipes.map(recipe =>
-            <li key={recipe.recipeName}>
+const SavedRecipes = ({ savedRecipes, loadSavedRecipe, onRemoveSavedRecipe }) =>
+  <Box title="Saved Recipes">
+    <table>
+      <tbody>
+        {savedRecipes.map(recipe =>
+          <tr key={recipe.recipeName}>
+            <td>
               <a
                 href={recipe.recipeName}
-                onClick={(event) => this.props.loadSavedRecipe(event, recipe.recipeName)}>
+                onClick={(event) => loadSavedRecipe(event, recipe.recipeName)}>
                 {recipe.recipeName}
               </a>
-            </li>
-          )}
-        </ul>
-      </Box>
-    )
-  }
+            </td>
+            <td>
+              <button onClick={() => onRemoveSavedRecipe(recipe.recipeName, this.loadSavedRecipeList)}>Remove</button>
+            </td>
+          </tr>
+        )}
+      </tbody>
+    </table>
+  </Box>
+
+SavedRecipes.propTypes = {
+  savedRecipes: PropTypes.array.isRequired,
+  loadSavedRecipe: PropTypes.func.isRequired,
+  onRemoveSavedRecipe: PropTypes.func.isRequired
 }
+
+export default SavedRecipes

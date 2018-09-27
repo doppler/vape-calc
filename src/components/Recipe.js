@@ -16,16 +16,34 @@ const Recipe = ({...props, onSaveRecipe}) => {
         <tbody>
           <tr>
             <td>Nicotine Liquid</td>
-            <td>{Number.parseFloat(data.batchSize * (data.targetNicStrength / data.baseNicStrength)).toFixed(2)} ml</td>
+            <td>
+              {
+                Number.parseFloat(
+                  data.batchSize * (data.targetNicStrength / data.baseNicStrength
+                )).toFixed(2)
+              } ml
+            </td>
           </tr>
           <tr>
             <td>Polyethylene Glycol</td>
-            <td>{Number.parseFloat(data.batchSize * ((100 - data.targetVgRatio) / 100)).toFixed(2)} ml</td>
+            <td>
+              {
+                Number.parseFloat(
+                  data.batchSize * ((100 - data.targetVgRatio) / 100)
+                ).toFixed(2)
+              } ml
+            </td>
           </tr>
           {data.flavors.map(flavor =>
             <tr key={flavor.id}>
               <td>{flavor.name}</td>
-              <td>{Number.parseFloat(data.batchSize * (flavor.percentage / 100)).toFixed(2)} ml</td>
+              <td>
+                {
+                  Number.parseFloat(
+                    data.batchSize * (flavor.percentage / 100)
+                  ).toFixed(2)
+                } ml
+              </td>
             </tr>
           )}
         </tbody>

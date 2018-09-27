@@ -18,8 +18,13 @@ class App extends Component {
       baseVgRatio: 100,
       targetNicStrength: 1.5,
       targetVgRatio: 80,
-      flavors: []
+      flavors: [],
+      savedRecipes: []
     }
+  }
+
+  componentDidMount() {
+    this.loadSavedRecipeList()
   }
 
   handleBatchSizeChange = (event) => {
@@ -83,7 +88,21 @@ class App extends Component {
   }
 
   handleSaveRecipe = () => {
-    localStorage.setItem(this.state.recipeName, JSON.stringify(this.state))
+    const recipe = {...this.state}
+    delete recipe.savedRecipes
+    localStorage.setItem(this.state.recipeName, JSON.stringify(recipe))
+    this.loadSavedRecipeList()
+  }
+
+  loadSavedRecipeList() {
+    const recipes = []
+    for(let i=0; i < localStorage.length; i++) {
+      let recipe = JSON.parse(localStorage.getItem(localStorage.key(i)))
+      recipes.push(recipe)
+    }
+    this.setState({
+      savedRecipes: recipes
+    })
   }
 
   loadSavedRecipe = (event, recipeName) => {
@@ -93,9 +112,14 @@ class App extends Component {
       ...recipe
     })
   }
-  
+
+  handleRemoveSavedRecipe = (recipeName) => {
+    localStorage.removeItem(recipeName)
+    this.loadSavedRecipeList()
+  }
+
   render() {
-    const { batchSize, recipeName, baseNicStrength, targetNicStrength, targetVgRatio, flavors } = this.state
+    const { batchSize, recipeName, baseNicStrength, targetNicStrength, targetVgRatio, flavors, savedRecipes } = this.state
     return (
       <div className="App">
         <Batch batchSize={batchSize} recipeName={recipeName}
@@ -112,7 +136,7 @@ class App extends Component {
           onRemoveFlavoring={this.handleRemoveFlavoring}
         />
         <Recipe data={this.state} onSaveRecipe={this.handleSaveRecipe}/>
-        <SavedRecipes loadSavedRecipe={this.loadSavedRecipe}/>
+        <SavedRecipes savedRecipes={savedRecipes} loadSavedRecipe={this.loadSavedRecipe} onRemoveSavedRecipe={this.handleRemoveSavedRecipe}/>
       </div>
     );
   }
