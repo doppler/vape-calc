@@ -17,10 +17,7 @@ class App extends Component {
       baseVgRatio: 100,
       targetNicStrength: 1.5,
       targetVgRatio: 80,
-      flavors: [
-        {id: 1, name: "Strawberry", percentage: 5},
-        {id: 2, name: "Rainbow Candy", percentage: 5}
-      ]
+      flavors: []
     }
   }
 
