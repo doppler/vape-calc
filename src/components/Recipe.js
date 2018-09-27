@@ -2,7 +2,7 @@ import React from 'react'
 // import PropTypes from 'prop-types'
 import Box from './Box'
 
-const Recipe = (props) => {
+const Recipe = ({...props, onSaveRecipe}) => {
   const { data } = props
   return (
     <Box title="Recipe">
@@ -30,6 +30,7 @@ const Recipe = (props) => {
           )}
         </tbody>
       </table>
+      <button onClick={onSaveRecipe}>Save</button>
     </Box>
   )
 }

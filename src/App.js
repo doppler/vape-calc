@@ -6,6 +6,7 @@ import Base from './components/Base'
 import Target from './components/Target'
 import Flavorings from './components/Flavorings'
 import Recipe from './components/Recipe'
+import SavedRecipes from './components/SavedRecipes'
 
 class App extends Component {
   constructor(props) {
@@ -25,6 +26,12 @@ class App extends Component {
     if (event.target.value === '') return null
     this.setState({
       batchSize: parseInt(event.target.value, 10)
+    })
+  }
+
+  handleRecipeNameChange = (event) => {
+    this.setState({
+      recipeName: event.target.value
     })
   }
 
@@ -75,11 +82,24 @@ class App extends Component {
     })
   }
 
+  handleSaveRecipe = () => {
+    localStorage.setItem(this.state.recipeName, JSON.stringify(this.state))
+  }
+
+  loadSavedRecipe = (event, recipeName) => {
+    event.preventDefault()
+    const recipe = JSON.parse(localStorage.getItem(recipeName))
+    this.setState({
+      ...recipe
+    })
+  }
+  
   render() {
-    const { batchSize, baseNicStrength, targetNicStrength, targetVgRatio, flavors } = this.state
+    const { batchSize, recipeName, baseNicStrength, targetNicStrength, targetVgRatio, flavors } = this.state
     return (
       <div className="App">
-        <Batch batchSize={batchSize} onChangeBatchSize={this.handleBatchSizeChange} />
+        <Batch batchSize={batchSize} recipeName={recipeName}
+          onChangeBatchSize={this.handleBatchSizeChange} onChangeRecipeName={this.handleRecipeNameChange} />
         <Base baseNicStrength={baseNicStrength} onChangeBaseNicStrength={this.handleBaseNicStrengthChange} />
         <Target
           targetNicStrength={targetNicStrength} onChangeTargetNicStrength={this.handleTargetNicStrengthChange}
@@ -91,7 +111,8 @@ class App extends Component {
           onChangeFlavorPercentage={this.handleFlavorPercentageChange}
           onRemoveFlavoring={this.handleRemoveFlavoring}
         />
-        <Recipe data={this.state}/>
+        <Recipe data={this.state} onSaveRecipe={this.handleSaveRecipe}/>
+        <SavedRecipes loadSavedRecipe={this.loadSavedRecipe}/>
       </div>
     );
   }

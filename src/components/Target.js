@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Box from './Box'
 
 const Target = ({ targetNicStrength, onChangeTargetNicStrength, targetVgRatio, onChangeTargetVgRatio }) =>
-  <Box title="Target Liquid">
+  <Box title="Target Percentages">
     <input
       type="number"
       step="0.5"
