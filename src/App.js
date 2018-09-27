@@ -68,7 +68,7 @@ class App extends Component {
   handleFlavorPercentageChange = (id, event) => {
     if (event.target.value === '') return null
     this.setState({
-      flavors: this.state.flavors.map(flavor => flavor.id === id ? {...flavor, percentage: event.target.value} : flavor)
+      flavors: this.state.flavors.map(flavor => flavor.id === id ? {...flavor, percentage: Number.parseFloat(event.target.value, 10)} : flavor)
     })
   }
 

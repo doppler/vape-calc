@@ -12,7 +12,8 @@ const Flavor = ({id, name, percentage, onChangeFlavorName, onChangeFlavorPercent
     <td>
       <input onChange={(event) => onChangeFlavorPercentage(id, event)}
         value={percentage}
-        size={5}
+        style={{width: '40px'}}
+        type="number"
       /> %
     </td>
     <td>

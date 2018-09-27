@@ -3,16 +3,12 @@ import PropTypes from 'prop-types'
 import Box from './Box'
 import Flavor from './Flavor'
 
-const Flavorings = ({ flavors, onAddFlavoring, onChangeFlavorName, onChangeFlavorPercentage, onRemoveFlavoring }) =>
+const Flavorings = ({ ...props, flavors, onAddFlavoring }) => //, onAddFlavoring, onChangeFlavorName, onChangeFlavorPercentage, onRemoveFlavoring }) =>
   <Box title="Flavorings">
     <table>
       <tbody>
         {flavors.map(flavor =>
-          <Flavor key={flavor.id}
-            id={flavor.id} name={flavor.name} percentage={flavor.percentage}
-            onChangeFlavorName={onChangeFlavorName}
-            onChangeFlavorPercentage={onChangeFlavorPercentage}
-            onRemoveFlavoring={onRemoveFlavoring}/>
+          <Flavor {...props} key={flavor.id} id={flavor.id} name={flavor.name} percentage={flavor.percentage}/>
         )}
       </tbody>
     </table>
@@ -22,9 +18,6 @@ const Flavorings = ({ flavors, onAddFlavoring, onChangeFlavorName, onChangeFlavo
 Flavorings.propTypes = {
   flavors: PropTypes.array.isRequired,
   onAddFlavoring: PropTypes.func.isRequired,
-  onChangeFlavorName: PropTypes.func.isRequired,
-  onChangeFlavorPercentage: PropTypes.func.isRequired,
-  onRemoveFlavoring: PropTypes.func.isRequired
 }
 
 export default Flavorings
