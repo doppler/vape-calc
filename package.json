@@ -2,7 +2,7 @@
   "name": "use-sass",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://doppler.github.com/vape-calc",
+  "homepage": "https://doppler.github.io/vape-calc",
   "dependencies": {
     "gh-pages": "^2.0.0",
     "node-sass-chokidar": "^1.3.3",
